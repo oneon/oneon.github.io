@@ -2,272 +2,224 @@
 <html>
   <head>
     <title>Smart Forest</title>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-	<link href=./style.css rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <style>
       html, body {
       min-height: 100%;
       }
-      body, div, form, input, select, p { 
+      body, div, form, input, select, textarea, p { 
       padding: 0;
       margin: 0;
       outline: none;
       font-family: Roboto, Arial, sans-serif;
       font-size: 14px;
       color: #666;
+      line-height: 22px;
       }
       h1 {
+      position: absolute;
       margin: 0;
-      font-weight: 400;
+      font-size: 38px;
+      color: #fff;
+      z-index: 2;
       }
-      h3 {
-      margin: 12px 0;
-      color: #8ebf42;
-      }
-      .main-block {
+      .testbox {
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #fff;
+      height: inherit;
+      padding: 20px;
       }
       form {
       width: 100%;
       padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0 0 25px 0 #88d8b0; 
       }
-      fieldset {
+      .banner {
+      position: relative;
+      height: 210px;
+      background-image: url("/uploads/media/default/0001/01/b42dddca6e6a31b300c6ce26cb9dcac565b2f869.jpeg");  
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      }
+      .banner::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.3); 
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      input[type="date"] {
+      padding: 4px 5px;
+      }
+      select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+      }
+      textarea {
+      width: calc(100% - 12px);
+      padding: 5px;
+      }
+      .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
+      color: #3db87a;
+      }
+      .item input:hover, .item select:hover, .item textarea:hover {
+      border: 1px solid transparent;
+      box-shadow: 0 0 6px 0 #3db87a;
+      color: #3db87a;
+      }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      }
+      .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      font-size: 20px;
+      color: #a9a9a9;
+      }
+      .item i {
+      right: 2%;
+      top: 30px;
+      z-index: 1;
+      }
+      [type="date"]::-webkit-calendar-picker-indicator {
+      right: 1%;
+      z-index: 2;
+      opacity: 0;
+      cursor: pointer;
+      }
+      input[type=radio], input[type=checkbox]  {
+      display: none;
+      }
+      label.radio {
+      position: relative;
+      display: inline-block;
+      margin: 5px 20px 15px 0;
+      cursor: pointer;
+      }
+      .question span {
+      margin-left: 30px;
+      }
+      label.radio:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+      }
+      input[type=radio]:checked + label:before, label.radio:hover:before {
+      border: 2px solid #3db87a;
+      }
+      label.radio:after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 5px;
+      width: 8px;
+      height: 4px;
+      border: 3px solid #3db87a;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+      opacity: 0;
+      }
+      input[type=radio]:checked + label:after {
+      opacity: 1;
+      }
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
       border: none;
-      border-top: 1px solid #8ebf42;
+      border-radius: 5px; 
+      background: #3db87a;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
       }
-      .account-details, .personal-details {
+      button:hover {
+      background: #88d8b0;
+      }
+      @media (min-width: 568px) {
+      .name-item, .city-item {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       }
-      .account-details >div, .personal-details >div >div {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
+      .name-item input, .city-item input {
+      width: calc(50% - 20px);
       }
-      .account-details >div, .personal-details >div, input, label {
-      width: 100%;
-      }
-      label {
-      padding: 0 5px;
-      text-align: right;
-      vertical-align: middle;
-      }
-      input {
-      padding: 5px;
-      vertical-align: middle;
-      }
-      .checkbox {
-      margin-bottom: 10px;
-      }
-      select, .children, .gender, .bdate-block {
-      width: calc(100% + 26px);
-      padding: 5px 0;
-      }
-      select {
-      background: transparent;
-      }
-      .gender input {
-      width: auto;
-      } 
-      .gender label {
-      padding: 0 5px 0 0;
-      } 
-      .bdate-block {
-      display: flex;
-      justify-content: space-between;
-      }
-      .birthdate select.day {
-      width: 35px;
-      }
-      .birthdate select.mounth {
-      width: calc(100% - 94px);
-      }
-      .birthdate input {
-      width: 38px;
-      vertical-align: unset;
-      }
-      .checkbox input, .children input {
-      width: auto;
-      margin: -2px 10px 0 0;
-      }
-      .checkbox a {
-      color: #8ebf42;
-      }
-      .checkbox a:hover {
-      color: #82b534;
-      }
-      button {
-      width: 100%;
-      padding: 10px 0;
-      margin: 10px auto;
-      border-radius: 5px; 
-      border: none;
-      background: #8ebf42; 
-      font-size: 14px;
-      font-weight: 600;
-      color: #fff;
-      }
-      button:hover {
-      background: #82b534;
-      }
-      @media (min-width: 568px) {
-      .account-details >div, .personal-details >div {
-      width: 50%;
-      }
-      label {
-      width: 40%;
-      }
-      input {
-      width: 60%;
-      }
-      select, .children, .gender, .bdate-block {
-      width: calc(60% + 16px);
+      .city-item select {
+      width: calc(50% - 8px);
       }
       }
     </style>
   </head>
   <body>
-    <div class="main-block">
-    <form action="/">
-      <h1>Create a free account</h1>
-      <fieldset>
-        <legend>
-          <h3>Account Details</h3>
-        </legend>
-        <div  class="account-details">
-          <div><label>Email*</label><input type="text" name="name" required></div>
-          <div><label>Password*</label><input type="password" name="name" required></div>
-          <div><label>Repeat email*</label><input type="text" name="name" required></div>
-          <div><label>Repeat password*</label><input type="password" name="name" required></div>
+    <div class="testbox">
+      <form action="/">
+        <div class="banner">
+          <h1>Select Country, Forest Area, Satellite</h1>
         </div>
-      </fieldset>
-      <fieldset>
-        <legend>
-          <h3>Personal Details</h3>
-        </legend>
-        <div  class="personal-details">
-          <div>
-            <div><label>Name*</label><input type="text" name="name" required></div>
-            <div><label>Phone*</label><input type="text" name="name" required></div>
-            <div><label>Street</label><input type="text" name="name"></div>
-            <div><label>City*</label><input type="text" name="name" required></div>
+        <div class="question">
+          <p>Satellite</p>
+          <div class="question-answer">
             <div>
-              <label>Country*</label>  
-              <select>
-                <option value=""></option>
-                <option value="Armenia">Armenia</option>
-                <option value="Russia">Russia</option>
-                <option value="Germany">Germany</option>
-                <option value="France">France</option>
-                <option value="USA">USA</option>
-                <option value="UK">UK</option>
-              </select>
-            </div>
-            <div><label>Website</label><input type="text" name="name"></div>
-          </div>
-          <div>
-            <div>
-              <label>Gender*</label>
-              <div class="gender">
-                <input type="radio" value="none" id="male" name="gender" required/>
-                <label for="male" class="radio">Male</label>
-                <input type="radio" value="none" id="female" name="gender" required/>
-                <label for="female" class="radio">Female</label>
-              </div>
-            </div>
-            <div class="birthdate">
-              <label>Birthdate*</label>
-              <div class="bdate-block">
-                <select class="day" required>
-                  <option value=""></option>
-                  <option value="01">01</option>
-                  <option value="02">02</option>
-                  <option value="03">03</option>
-                  <option value="04">04</option>
-                  <option value="05">05</option>
-                  <option value="06">06</option>
-                  <option value="07">07</option>
-                  <option value="08">08</option>
-                  <option value="09">09</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                  <option value="13">13</option>
-                  <option value="14">14</option>
-                  <option value="15">15</option>
-                  <option value="16">16</option>
-                  <option value="17">17</option>
-                  <option value="18">18</option>
-                  <option value="19">19</option>
-                  <option value="20">20</option>
-                  <option value="21">21</option>
-                  <option value="22">22</option>
-                  <option value="23">23</option>
-                  <option value="24">24</option>
-                  <option value="25">25</option>
-                  <option value="26">26</option>
-                  <option value="27">27</option>
-                  <option value="28">28</option>
-                  <option value="29">29</option>
-                  <option value="30">30</option>
-                  <option value="31">31</option>
-                </select>
-                <select class="mounth" required>
-                  <option value=""></option>
-                  <option value="January">January</option>
-                  <option value="February">February</option>
-                  <option value="March">March</option>
-                  <option value="April">April</option>
-                  <option value="May">May</option>
-                  <option value="June">June</option>
-                  <option value="July">July</option>
-                  <option value="August">August</option>
-                  <option value="September">September</option>
-                  <option value="October">October</option>
-                  <option value="November">November</option>
-                  <option value="December">December</option>
-                </select>
-                <input type="text" name="name" required>
-              </div>
+              <input type="radio" value="none" id="radio_1" name="instrument" checked/>
+              <label for="radio_1" class="radio"><span>MODIS</span></label>
             </div>
             <div>
-              <label>Nationality*</label>              
-              <select required>
-                <option value=""></option>
-                <option value="Armenian">Armenian</option>
-                <option value="Russian">Russian</option>
-                <option value="German">German</option>
-                <option value="French">French</option>
-                <option value="American">American</option>
-                <option value="English">English</option>
-              </select>
-            </div>
-            <div>
-              <label>Children*</label>
-              <div class="children"><input type="checkbox" name="name" required></div>
+              <input type="radio" value="none" id="radio_2" name="instrument1" checked/>
+              <label for="radio_2" class="radio"><span>VIIRS</span></label>
             </div>
           </div>
         </div>
-      </fieldset>
-      <fieldset>
-        <legend>
-          <h3>Terms and Mailing</h3>
-        </legend>
-        <div  class="terms-mailing">
-          <div class="checkbox">
-            <input type="checkbox" name="checkbox"><span>I accept the <a href="https://www.w3docs.com/privacy-policy">Privacy Policy for W3Docs.</a></span>
+            <select required>
+              <option value="">Country</option>
+              <option value="1"selected >India</option>
+              <option value="2">Ethiopia</option>
+              <option value="3">Nepal</option>
+              <option value="4">Philippines</option>
+              <option value="5">Greece</option>
+            </select>
+			<select required>
+              <option value="">Forest</option>
+              <option value="1" selected>Mananur</option>
+              <option value="2">Gir</option>
+              <option value="3">Amarabad</option>
+              <option value="4">Awash National Park</option>
+              <option value="5">OMO National Park</option>
+            </select>
           </div>
-          <div class="checkbox">
-            <input type="checkbox" name="checkbox"><span>I want to recelve personallzed offers by your site</span>
-          </div>
-      </fieldset>
-      <button onclick="window.location.href = 'table.html';">Submit</button>
-    </form>
-    </div> 
+        </div>
+        <div class="btn-block">
+          <button onclick="window.location.href = 'table.html'; href="/">Load Data</button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
